@@ -1,0 +1,66 @@
+import React from 'react';
+import { Layout } from '@douyinfe/semi-ui';
+
+import ReposGroup from './RepoGroup';
+import SideBar from './SideBar';
+import TopBar from './TopBar';
+import Footer from './Footer';
+
+import { Nav } from '@douyinfe/semi-ui';
+import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
+
+export default function App() {
+  const { Sider, Content } = Layout;
+
+  return (
+    <Layout>
+
+      {/* 这个有点奇怪，分离之后反而显示不对了，你们拿到之后可以先看看怎么修 */}
+      {/* <SideBar></SideBar>  */}
+
+      <Sider>
+        <Nav
+          defaultSelectedKeys={['Repos']}
+          style={{ maxWidth: 200, height: '100%' }}
+          items={[
+            { itemKey: 'Repos', text: 'Repos', icon: <IconBox size="large" /> },
+            { itemKey: 'Comparing', text: 'Comparation', icon: <IconSimilarity size='large' /> },
+            { itemKey: 'Accounts', text: 'Accounts', icon: <IconUserSetting size="large" /> },
+          ]}
+          header={{
+            logo: <img alt='logo' src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" />,
+            text: 'Github Insight',
+          }}
+          footer={{
+            collapseButton: true,
+          }}
+        />
+      </Sider>
+
+      <Layout>
+        <TopBar></TopBar>
+
+        <Content style={{
+          padding: '24px',
+          backgroundColor: 'var(--semi-color-bg-0)',
+        }}
+        >
+          <div
+            style={{
+              borderRadius: '10px',
+              border: '1px solid var(--semi-color-border)',
+              height: 'auto',
+              padding: '32px',
+            }}
+          >
+            {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
+            <ReposGroup />
+          </div>
+        </Content>
+
+        {/* 目前还没办法固定在页面最下面 */}
+        <Footer></Footer>
+      </Layout>
+    </Layout>
+  );
+};
