@@ -1,30 +1,21 @@
 import React from 'react';
-import { Card, CardGroup, Typography } from '@douyinfe/semi-ui';
+import { CardGroup } from '@douyinfe/semi-ui';
+import RepoCard from './RepoCard';
+import axios from 'axios';
 
-export default function ReposGroup() {
-    const { Text } = Typography;
+export default function ReposGroup(props) {
+
+    const repoList = props.repoList
 
     return (
         <CardGroup>
             {
-                [...new Array(2).keys()].map((id) => (
-                    <Card
-                        key={id}
-                        shadows='hover'
-                        title={'Repo'}
-                        headerLine={true}
-                        style={{ width: 260 }}
-                        headerExtraContent={
-                            <Text link>
-                                More
-                            </Text>
-                        }
-                    >
-                        <Text>Card content</Text>
-                    </Card>
+                repoList.map((repo) => (
+                    <RepoCard key={repo.id} about={repo.about} name={repo.name} link={repo.link}></RepoCard>
                 ))
             }
         </CardGroup>
     );
 }
 
+// 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
