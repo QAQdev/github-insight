@@ -1,31 +1,84 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
+import * as echarts from 'echarts';
 import { Card } from '@douyinfe/semi-ui';
+import { useState ,useEffect} from 'react';
 export default function Graph() {
+  // axios获取后端数据
+  const [data,setData] = useState({
+    timeline:['2022/10/1', '2022/10/2', '2022/10/3', '2022/10/4', '2022/10/5', '2022/10/6', '2022/10/7'],
+    ydata:[820, 932, 901, 934, 1290, 1330, 1320]
+  })
+  
   const options = {
-    grid: { top: 8, right: 8, bottom: 24, left: 36 },
+    tooltip: {
+      trigger: 'axis',
+      position: function (pt) {
+        return [pt[0], '10%'];
+      }
+    },
+    title: {
+      left: 'center',
+      text: 'Commit'
+    },
+    toolbox: {
+      feature: {
+        dataZoom: {
+          yAxisIndex: 'none'
+        },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      boundaryGap: false,
+      data: data.timeline
     },
     yAxis: {
       type: 'value',
+      boundaryGap: [0, '100%']
     },
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 0,
+        end: 10
+      },
+      {
+        start: 0,
+        end: 10
+      }
+    ],
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        name: 'Fake Data',
         type: 'line',
-        smooth: true,
-      },
-    ],
-    tooltip: {
-      trigger: 'axis',
-    },
+        symbol: 'none',
+        sampling: 'lttb',
+        itemStyle: {
+          color: 'rgb(255, 70, 131)'
+        },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(255, 158, 68)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(255, 70, 131)'
+            }
+          ])
+        },
+        data: data.ydata
+      }
+    ]
   };
 
   return (
-    <Card>
-      <ReactECharts option={options} />;
+    <Card style={{ maxWidth: 720 }}>
+      <ReactECharts option={options} />
     </Card>
   )
 };

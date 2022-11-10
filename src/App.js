@@ -6,7 +6,8 @@ import SideBar from './SideBar';
 import TopBar from './TopBar';
 import Footer from './Footer';
 import SearchBar from './SearchBar';
-
+import Graph from './LineGraph';
+import DoubleGraph from './DoublelineGraph'
 import { Nav } from '@douyinfe/semi-ui';
 import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
 
@@ -68,7 +69,8 @@ export default function App() {
             <SearchBar onSubmit={addNewRepo} />
             {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
             <ReposGroup repoList={repoList} />
-
+            <Graph/>
+            <DoubleGraph/>
           </div>
         </Content>
 
