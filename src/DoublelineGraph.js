@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
 import { Card } from '@douyinfe/semi-ui';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
+
+
 export default function DoublelineGraph() {
   // axios获取后端数据
-  const [data,setData] = useState({
-    timeline:['2022/10/1', '2022/10/2', '2022/10/3', '2022/10/4', '2022/10/5', '2022/10/6', '2022/10/7'],
-    y1data:[820, 932, 901, 934, 1290, 1330, 1320],
-    y2data:[375,374,958,273,1029,675,293]
+  const [data, setData] = useState({
+    timeline: ['2022/10/1', '2022/10/2', '2022/10/3', '2022/10/4', '2022/10/5', '2022/10/6', '2022/10/7'],
+    y1data: [820, 932, 901, 934, 1290, 1330, 1320],
+    y2data: [375, 374, 958, 273, 1029, 675, 293]
   })
   const options = {
     title: {
@@ -61,8 +63,8 @@ export default function DoublelineGraph() {
         axisLine: { onZero: false },
         // prettier-ignore
         data: data.timeline.map(function (str) {
-                  return str.replace(' ', '\n');
-              })
+          return str.replace(' ', '\n');
+        })
       }
     ],
     yAxis: [
@@ -142,7 +144,10 @@ export default function DoublelineGraph() {
   };
 
   return (
-    <Card style={{ maxWidth: 720 }}>
+    <Card
+      style={{ maxWidth: 720 }}
+      shadows='hover'
+    >
       <ReactECharts option={options} />
     </Card>
   )

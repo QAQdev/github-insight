@@ -2,14 +2,16 @@ import React from 'react'
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import { Card } from '@douyinfe/semi-ui';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
+
+
 export default function Graph() {
   // axios获取后端数据
-  const [data,setData] = useState({
-    timeline:['2022/10/1', '2022/10/2', '2022/10/3', '2022/10/4', '2022/10/5', '2022/10/6', '2022/10/7'],
-    ydata:[820, 932, 901, 934, 1290, 1330, 1320]
+  const [data, setData] = useState({
+    timeline: ['2022/10/1', '2022/10/2', '2022/10/3', '2022/10/4', '2022/10/5', '2022/10/6', '2022/10/7'],
+    ydata: [820, 932, 901, 934, 1290, 1330, 1320]
   })
-  
+
   const options = {
     tooltip: {
       trigger: 'axis',
@@ -77,7 +79,10 @@ export default function Graph() {
   };
 
   return (
-    <Card style={{ maxWidth: 720 }}>
+    <Card
+      style={{ maxWidth: 720 }}
+      shadows='hover'
+    >
       <ReactECharts option={options} />
     </Card>
   )
