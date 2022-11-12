@@ -8,6 +8,8 @@ import Footer from './Footer';
 import SearchBar from './SearchBar';
 import Graph from './LineGraph';
 import DoubleGraph from './DoublelineGraph'
+import RoundGraph from './RoundGraph';
+import BarChart from './BarChart'
 import { Nav } from '@douyinfe/semi-ui';
 import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
 
@@ -71,6 +73,8 @@ export default function App() {
             <ReposGroup repoList={repoList} />
             <Graph/>
             <DoubleGraph/>
+            <RoundGraph/>
+            <BarChart/>
           </div>
         </Content>
 
