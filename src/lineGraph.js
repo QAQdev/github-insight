@@ -45,16 +45,16 @@ export default function Graph() {
       {
         type: 'inside',
         start: 0,
-        end: 10
+        end: 100
       },
       {
         start: 0,
-        end: 10
+        end: 100
       }
     ],
     series: [
       {
-        name: 'Fake Data',
+        name: 'Commit',
         type: 'line',
         symbol: 'none',
         sampling: 'lttb',
