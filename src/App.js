@@ -12,6 +12,10 @@ import RoundGraph from './RoundGraph';
 import BarChart from './BarChart'
 import { Nav } from '@douyinfe/semi-ui';
 import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
+import CustomRenderDragDemo from './CustomRenderDragDemo';
+import Clouds from './Clouds';
+
+// npm install react-sortable-hoc -S --legacy-peer-deps
 
 export default function App() {
   const { Sider, Content } = Layout;
@@ -75,6 +79,8 @@ export default function App() {
             <DoubleGraph/>
             <RoundGraph/>
             <BarChart/>
+
+            <CustomRenderDragDemo render_target = {<Clouds links = {[{num : 1}, {num : 2}]}/>}/>
           </div>
         </Content>
 
