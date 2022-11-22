@@ -1,7 +1,7 @@
 import React,{useState}from 'react'
 import ReactECharts from 'echarts-for-react';
 import { Card } from '@douyinfe/semi-ui';
-export default function RoundGraph() {
+export default function RoundGraph(props) {
     const [data,setData] = useState( [
         { value: 20, name: 'Python' },
         { value: 15, name: 'C++' },
@@ -12,7 +12,7 @@ export default function RoundGraph() {
     
     const options =  {
         title: {
-          text: 'Language',
+          text: props.type,
           subtext: 'Currently',
           left: 'center'
         },
@@ -21,16 +21,16 @@ export default function RoundGraph() {
           formatter: "{a} <br/>{b} : {d}%" 
         },
         legend: {
-          orient: 'horizontal',
-          top: 'bottom',
-          left: 'center'
+          orient: 'vertical',
+          top: 'top',
+          left: 'left'
         },
         series: [
           {
             name: 'Proportion',
             type: 'pie',
-            center: ['50%','45%'],
-            radius: '45%',
+            center: ['50%','50%'],
+            radius: '50%',
             data:data,
             emphasis: {
               itemStyle: {
@@ -44,7 +44,7 @@ export default function RoundGraph() {
       };
     return (
         <Card
-        style={{ maxWidth: 360 }}
+        style={{ maxWidth: 720 }}
         shadows='hover'
         >
         <ReactECharts option={options} />

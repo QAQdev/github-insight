@@ -14,7 +14,7 @@ import { Nav } from '@douyinfe/semi-ui';
 import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
 import CustomRenderDragDemo from './CustomRenderDragDemo';
 import Clouds from './Clouds';
-
+import Information from './Information';
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
 export default function App() {
@@ -75,11 +75,7 @@ export default function App() {
             <SearchBar onSubmit={addNewRepo} />
             {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
             <ReposGroup repoList={repoList} />
-            <Graph/>
-            <DoubleGraph/>
-            <RoundGraph/>
-            <BarChart/>
-
+            <Information/>
             <CustomRenderDragDemo render_target = {<Clouds links = {[{num : 1}, {num : 2}]}/>}/>
           </div>
         </Content>
