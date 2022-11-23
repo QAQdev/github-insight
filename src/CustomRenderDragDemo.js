@@ -27,7 +27,7 @@ export default class CustomRenderDragDemo extends React.Component
             ,
             dataSource: Array.from({ length: 10 }, (v, i) => ({
                 label: `仓库 ${i}`,
-                value: i,
+                value: "" + i,
                 disabled: false,
                 key: i,
             })),
@@ -89,28 +89,31 @@ export default class CustomRenderDragDemo extends React.Component
                 break;
         }
         return (
-            <section className="source-panel">
-                <div className="panel-header sp-font">仓库列表</div>
-                <div className="panel-main">
-                    <Input
-                        style={{ width: 454, margin: '12px 14px' }}
-                        prefix={<IconSearch />}
-                        onChange={onSearch}
-                        showClear
-                    />
-                    <div className="panel-controls sp-font">
-                        <span>待选仓库: {filterData.length}</span>
-                        <Button onClick={onAllClick} theme="borderless" size="small">
-                            {allChecked ? '取消全选' : '全选'}
-                        </Button>
+            <Card>
+                <section className="source-panel">
+                    <div className="panel-header sp-font">仓库列表</div>
+                    <div className="panel-main">
+                        <Input
+                            style={{ width: 454, margin: '12px 14px' }}
+                            prefix={<IconSearch />}
+                            onChange={onSearch}
+                            showClear
+                        />
+                        <div className="panel-controls sp-font">
+                            <span>待选仓库: {filterData.length}</span>
+                            <Button onClick={onAllClick} theme="borderless" size="small">
+                                {allChecked ? '取消全选' : '全选'}
+                            </Button>
+                        </div>
+                        <div className="panel-list">{content}</div>
                     </div>
-                    <div className="panel-list">{content}</div>
-                </div>
-            </section>
+                </section>
+            </Card>
         );
     }
 
-    renderSelectedPanel(props) {
+    renderSelectedPanel(props) 
+    {
         var { selectedData, onClear, clearText, onRemove } = props;
 
         let mainContent = selectedData.map(item => this.renderItem('selected', item, onRemove));
@@ -158,7 +161,6 @@ export default class CustomRenderDragDemo extends React.Component
                 <div>正在比较：</div>
                 <div className="panel-main">{in_queue_content}</div>
             </div>
-
         }
         else 
         {
@@ -166,16 +168,21 @@ export default class CustomRenderDragDemo extends React.Component
         }
 
         return (
-            <section className="selected-panel">
-                <div className="panel-header sp-font">
-                    <div>仓库比较队列: {selectedData.length}</div>
-                    <Button theme="borderless" type="primary" onClick={onClear} size="small">
-                        {clearText || '清空 '}
-                    </Button>
-                </div>
-                {comping_q}
-                {comp_queue}
-            </section>
+            <Card
+                style={{ width : 500}}
+                shadows='hover'
+            >
+                <section className="selected-panel">
+                    <div className="panel-header sp-font">
+                        <div>仓库比较队列: {selectedData.length}</div>
+                        <Button theme="borderless" type="primary" onClick={onClear} size="small">
+                            {clearText || '清空 '}
+                        </Button>
+                    </div>
+                    {comping_q}
+                    {comp_queue}
+                </section>
+            </Card>
         );
     }
 
@@ -185,15 +192,16 @@ export default class CustomRenderDragDemo extends React.Component
         return (
             <div>
                 <Card
-                    style={{ maxWidth: 1000 }}
+                    style={{ width : 1000 }}
                     shadows='hover'
                 >
                     <Transfer
-                    onChange={values => console.log(values)}
-                    className="component-transfer-demo-custom-panel"
-                    renderSourcePanel={this.renderSourcePanel}
-                    renderSelectedPanel={this.renderSelectedPanel}
-                    dataSource={dataSource}
+                        style={{ height : 500 }}
+                        onChange = {values => this.props.onChange(values)}
+                        className="component-transfer-demo-custom-panel"
+                        renderSourcePanel={this.renderSourcePanel}
+                        renderSelectedPanel={this.renderSelectedPanel}
+                        dataSource={dataSource}
                     />
                 </Card>
             </div>

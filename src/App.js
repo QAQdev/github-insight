@@ -14,7 +14,11 @@ import { Nav } from '@douyinfe/semi-ui';
 import { IconBox, IconUserSetting, IconSimilarity } from '@douyinfe/semi-icons';
 import CustomRenderDragDemo from './CustomRenderDragDemo';
 import Clouds from './Clouds';
-import Information from './Information';
+import CompareShowing from './CompareShowing';
+import CustomerLogin from './CustomerLogin';
+import CardOfName from './CardOfName';
+import CustomerPage from './CustomerPage';
+
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
 export default function App() {
@@ -27,8 +31,96 @@ export default function App() {
     "link": "https://github.com/pytorch/pytorch"
   }]);
 
+  const [lay_out_state, changeLayoutState] = React.useState("Repos");
+
   function addNewRepo(repo) {
     addRepoToList(repoList.concat(repo))
+  }
+
+  function getLayOut()
+  {
+    if(lay_out_state == "Repos")
+    {
+      return (
+        <Layout>
+          <TopBar></TopBar>
+  
+          <Content style={{
+            padding: '24px',
+            backgroundColor: 'var(--semi-color-bg-0)',
+          }}
+          >
+            <div
+              style={{
+                borderRadius: '10px',
+                border: '1px solid var(--semi-color-border)',
+                height: 'auto',
+                padding: '32px',
+              }}
+            >
+              <SearchBar onSubmit={addNewRepo} />
+              {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
+              <ReposGroup repoList={repoList} />
+              <Graph/>
+              <DoubleGraph/>
+              <RoundGraph/>
+              <BarChart/>
+  
+              <CustomRenderDragDemo />
+              <CompareShowing />
+              <CustomerLogin />
+              <CardOfName></CardOfName>
+            </div>
+          </Content>
+  
+          {/* 目前还没办法固定在页面最下面 */}
+          <Footer></Footer>
+        </Layout>
+      )
+    }
+    else if(lay_out_state == "Comparation")
+    {
+      return (
+        <CompareShowing />
+      )
+    }
+    else if(lay_out_state == "Accounts")
+    {
+      return (
+        <div>
+          <CustomerPage></CustomerPage>
+        </div>
+      )
+    }
+    else 
+    {
+      return (
+        <div>
+          未知状态
+        </div>
+      )
+    }
+  }
+
+  const toRepos = () =>
+  {
+    console.log("repos")
+    changeLayoutState("Repos");
+  }
+
+  const toComparation = () =>
+  {
+    changeLayoutState("Comparation");
+  }
+
+  const toAccounts = () =>
+  {
+    changeLayoutState("Accounts");
+  }
+
+  function getKey()
+  {
+    return lay_out_state;
   }
 
   return (
@@ -39,12 +131,12 @@ export default function App() {
 
       <Sider>
         <Nav
-          defaultSelectedKeys={['Repos']}
+          defaultSelectedKeys={[getKey()]}
           style={{ maxWidth: 200, height: '100%' }}
           items={[
-            { itemKey: 'Repos', text: 'Repos', icon: <IconBox size="large" /> },
-            { itemKey: 'Comparing', text: 'Comparation', icon: <IconSimilarity size='large' /> },
-            { itemKey: 'Accounts', text: 'Accounts', icon: <IconUserSetting size="large" /> },
+            { itemKey: 'Repos', text: 'Repos', icon: <IconBox size="large" /> , onClick : toRepos},
+            { itemKey: 'Comparation', text: 'Comparation', icon: <IconSimilarity size='large' />, onClick : toComparation },
+            { itemKey: 'Accounts', text: 'Accounts', icon: <IconUserSetting size="large" /> , onClick : toAccounts },
           ]}
           header={{
             logo: <img alt='logo' src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" />,
@@ -56,33 +148,8 @@ export default function App() {
         />
       </Sider>
 
-      <Layout>
-        <TopBar></TopBar>
-
-        <Content style={{
-          padding: '24px',
-          backgroundColor: 'var(--semi-color-bg-0)',
-        }}
-        >
-          <div
-            style={{
-              borderRadius: '10px',
-              border: '1px solid var(--semi-color-border)',
-              height: 'auto',
-              padding: '32px',
-            }}
-          >
-            <SearchBar onSubmit={addNewRepo} />
-            {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
-            <ReposGroup repoList={repoList} />
-            <Information/>
-            <CustomRenderDragDemo render_target = {<Clouds links = {[{num : 1}, {num : 2}]}/>}/>
-          </div>
-        </Content>
-
-        {/* 目前还没办法固定在页面最下面 */}
-        <Footer></Footer>
-      </Layout>
+      {getLayOut()}
+      
     </Layout>
   );
 };

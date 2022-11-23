@@ -5,6 +5,13 @@ import Cloud from './Cloud';
 
 export default function Clouds(props)
 {
+    if(! props.cloud_links)
+    {
+        return (
+            <CardGroup></CardGroup>
+        )
+    }
+
     const target_clouds = 
     props.cloud_links
     // [
@@ -15,6 +22,13 @@ export default function Clouds(props)
     //         num : 2
     //     }
     // ]
+
+    if(target_clouds.length < 2)
+    {
+        return (
+            <CardGroup></CardGroup>
+        )
+    }
 
     var dyna_id = props.id
 
