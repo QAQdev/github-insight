@@ -1,44 +1,98 @@
 
 import { CardGroup } from '@douyinfe/semi-ui';
 import React from 'react'
+import Allin from './Allin';
 import Cloud from './Cloud';
 
-export default function Clouds(props)
+export default class Clouds extends React.Component
 {
-    if(! props.cloud_links)
+    // cloud_links
+    // repo_names
+    constructor(props)
     {
-        return (
-            <CardGroup></CardGroup>
-        )
+        super(props)
+        this.state =
+        {
+            target_urls : props.cloud_links,
+            target_names : props.repo_names
+        }
     }
 
-    const target_clouds = 
-    props.cloud_links
-    // [
-    //     {
-    //         num : 1
-    //     },
-    //     {
-    //         num : 2
-    //     }
-    // ]
-
-    if(target_clouds.length < 2)
+    get_allins()
     {
-        return (
-            <CardGroup></CardGroup>
-        )
-    }
+        if(this.state.target_names == null)
+        {
+            return (<div>NULL</div>)
+        }
 
-    var dyna_id = props.id
-
-    return (
-        <CardGroup>
+        if(this.state.target_urls.length < 2)
+        {
+            return
+        }
+        else 
+        {
+            var array = []
+            for(var i=0; i<2; i++)
             {
-                target_clouds.map((i) => (
-                    <Cloud num = {i.num} key = { ++ dyna_id } ></Cloud>
-                ))
+                console.log("clouds url" + this.state.target_urls[i].num)
+                array.push
+                (
+                    <Allin 
+                        url = {this.state.target_urls[i].num}
+                        repo_name = {this.state.target_names[i]}
+                        key = {i}
+                    ></Allin>
+                )
             }
-        </CardGroup>
-    );
+            return array
+        }
+    }
+
+    render()
+    {
+        return ( 
+            <CardGroup>
+                {
+                    this.get_allins()
+                }
+            </CardGroup>
+        );
+    }
+    
+    // if(! props.cloud_links)
+    // {
+    //     return (
+    //         <CardGroup></CardGroup>
+    //     )
+    // }
+
+    // const target_clouds = 
+    // props.cloud_links
+
+    
+    // // [
+    // //     {
+    // //         num : 1
+    // //     },
+    // //     {
+    // //         num : 2
+    // //     }
+    // // ]
+
+    // if(target_clouds.length < 2)
+    // {
+    //     return (
+    //         <CardGroup></CardGroup>
+    //     )
+    // }
+
+    // var dyna_id = props.id
+
+    // return (
+    //     <CardGroup>
+    //         {
+    //             this.get_allins()
+    //         }
+    //     </CardGroup>
+    // );
 }

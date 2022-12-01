@@ -5,11 +5,22 @@ import { Card } from '@douyinfe/semi-ui';
 import { useState, useEffect } from 'react';
 
 
-export default function Graph() {
+export default function BarChart(props) 
+{
   // axios获取后端数据
+    var con = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    var d_data = [820, 932, 901, 934, 1290, 1330, 1320];
+    if(props.contributer)
+    {
+      con = props.contributer
+    }
+    if(props.data)
+    {
+      d_data = props.data
+    }
     const [data, setData] = useState({
-        contributer: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
+        contributer: con,
+        data: d_data
     })
     const options = {
     title: {
