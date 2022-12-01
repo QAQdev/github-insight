@@ -12,7 +12,7 @@ export default function Cloud(props)
             style={{ maxWidth: 1000 }}
             shadows='hover'
         >
-            <img src={"http://10.112.35.32:3001/cloud/" + cloud_value} 
+            <img src={window.back_url + window.get_cloud + cloud_value}
                 alt={"云图无法显示" + cloud_value} width={900} height={540}>
             </img>
         </Card>
