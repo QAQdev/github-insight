@@ -3,6 +3,7 @@ import { Transfer, Button, Spin, Input, Card } from '@douyinfe/semi-ui';
 import { IconHandle, IconSearch } from '@douyinfe/semi-icons';
 import { Divider } from '@douyinfe/semi-ui';
 import Clouds from './Clouds';
+import reactDom from 'react-dom';
 
 // npm install react-sortable-hoc -S --legacy-peer-deps
 // npm install echarts-for-react -S --legacy-peer-deps
@@ -10,24 +11,26 @@ import Clouds from './Clouds';
 
 export default class CustomRenderDragDemo extends React.Component 
 {
-    constructor(props) {
+    // repo_names
+    constructor(props) 
+    {
         super(props);
+        var repo_names = []
+        for(var i=0; i<10; i++)
+        {
+            repo_names.push("仓库" + i)
+        }
+        if(props.repo_names)
+        {
+            repo_names = props.repo_names;
+        }
+
         this.state = 
         {
             is_comparing : false,
-            cloud_links :
-            [
-                {
-                    num : 1
-                },
-                {
-                    num : 1
-                }
-            ]    
-            ,
-            dataSource: Array.from({ length: 10 }, (v, i) => ({
-                label: `仓库 ${i}`,
-                value: "" + i,
+            dataSource: Array.from({ length: repo_names.length }, (v, i) => ({
+                label: repo_names[i],
+                value: i,
                 disabled: false,
                 key: i,
             })),
@@ -36,7 +39,6 @@ export default class CustomRenderDragDemo extends React.Component
         this.renderSelectedPanel = this.renderSelectedPanel.bind(this);
         this.renderItem = this.renderItem.bind(this);
         this.is_comparing = false;
-        this.ComparationComponets = <Clouds links = {this.state.cloud_links}/>; 
     }
 
     renderItem(type, item, onItemAction, selectedItems) {

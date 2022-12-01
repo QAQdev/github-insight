@@ -21,21 +21,36 @@ import CustomerPage from './CustomerPage';
 import CallLineGraph from './CallLineGraph';
 import CallRoundGraph from './CallRoundGraph';
 import Allin from './Allin';
+import CallBarChart from './CallBarChart';
 
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
 window.back_url = "http://10.112.35.32:5000"
 window.get_commit = "/get_commit/"
+window.get_repo = "/get_repo/"
 window.get_contributors = "/get_contributors/"
 window.get_contributors_all = "/get_contributors/all"
 window.get_user = "/get_user/"
 window.get_commit_by_time = "/get_commit_by_time/"
 window.get_contributors_core = "/get_contributors/core"
 window.get_cloud = "/cloud/"
+window.get_company_commits = "/get_company_commits"
+window.get_update = "/update_repo"
 
 window.repo_map = 
 {
-  "https://github.com/pytorch/pytorch" : 0
+  "https://github.com/pytorch/pytorch" : 0,
+  "https://github.com/pytorch/pytorch1" : 1,
+  "https://github.com/pytorch/pytorch2" : 2,
+  "https://github.com/pytorch/pytorch3" : 3,
+  "https://github.com/pytorch/pytorch4" : 4,
+  "https://github.com/pytorch/pytorch5" : 5,
+  "https://github.com/pytorch/pytorch6" : 6,
+  "https://github.com/pytorch/pytorch7" : 7,
+  "https://github.com/pytorch/pytorch8" : 8,
+  "https://github.com/pytorch/pytorch9" : 9,
+  "https://github.com/pytorch/pytorch10" : 10,
+  "https://github.com/pytorch/pytorch11" : 11
 }
 
 export default function App() {
@@ -48,10 +63,23 @@ export default function App() {
     "link": "https://github.com/pytorch/pytorch"
   }]);
 
+  const [repo_name_list, addRepoNameList] = React.useState
+  (
+    ["pytorch"]
+  )
+
+  const [repo_url_list, addRepoUrlList] = React.useState
+  (
+    ["https://github.com/pytorch/pytorch"]
+  )
+
   const [lay_out_state, changeLayoutState] = React.useState("Repos");
 
-  function addNewRepo(repo) {
+  function addNewRepo(repo) 
+  {
     addRepoToList(repoList.concat(repo))
+    addRepoNameList(repo_name_list.concat(repo.name))
+    addRepoUrlList(repo_url_list.concat(repo.link))
   }
 
   function getLayOut()
@@ -75,7 +103,7 @@ export default function App() {
               <SearchBar onSubmit={addNewRepo} />
               {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
               <ReposGroup repoList={repoList} />
-              <Graph/>
+              {/* <Graph/>
               <DoubleGraph/>
               <RoundGraph/>
               <BarChart/>
@@ -83,7 +111,7 @@ export default function App() {
               <CustomRenderDragDemo />
               <CompareShowing />
               <CustomerLogin />
-              <CardOfName></CardOfName>
+              <CardOfName></CardOfName> */}
             </div>
           </Content>          
       )
@@ -91,7 +119,10 @@ export default function App() {
     else if(lay_out_state == "Comparation")
     {
       return (
-        <CompareShowing />
+        <CompareShowing 
+          urls = {repo_url_list}
+          repo_names = {repo_name_list}
+        />
       )
     }
     else if(lay_out_state == "Accounts")
@@ -134,50 +165,54 @@ export default function App() {
   }
 
 
-  // 测试用return
-  return (
-    // <CallLineGraph repo_name = "hzzz的仓库"></CallLineGraph>
-    // <div>
-    //   <CallRoundGraph></CallRoundGraph>
-    //   <CallRoundGraph is_core = {true}></CallRoundGraph>
-    // </div>  
-    <div>
-      <Allin></Allin>
-    </div>
-  )
+  // // 测试用return
+  // return (
+  //   // <CallLineGraph repo_name = "hzzz的仓库"></CallLineGraph>
+  //   // <div>
+  //   //   <CallRoundGraph></CallRoundGraph>
+  //   //   <CallRoundGraph is_core = {true}></CallRoundGraph>
+  //   // </div>  
+  //   <div>
+  //     {/* <Allin></Allin> */}
+  //     {/* <CompareShowing/> */}
+  //     <CallBarChart 
+  //       url = "https://github.com/pytorch/pytorch"
+  //     ></CallBarChart>
+  //   </div>
+  // )
 
 
   // 真正的return
-  // return (
-  //   <Layout>
+  return (
+    <Layout>
 
-  //     {/* 这个有点奇怪，分离之后反而显示不对了，你们拿到之后可以先看看怎么修 */}
-  //     {/* <SideBar></SideBar>  */}
+      {/* 这个有点奇怪，分离之后反而显示不对了，你们拿到之后可以先看看怎么修 */}
+      {/* <SideBar></SideBar>  */}
 
-  //     <Sider>
-  //       <Nav
-  //         defaultSelectedKeys={[getKey()]}
-  //         style={{ maxWidth: 200, height: '100%' }}
-  //         items={[
-  //           { itemKey: 'Repos', text: 'Repos', icon: <IconBox size="large" /> , onClick : toRepos},
-  //           { itemKey: 'Comparation', text: 'Comparation', icon: <IconSimilarity size='large' />, onClick : toComparation },
-  //           { itemKey: 'Accounts', text: 'Accounts', icon: <IconUserSetting size="large" /> , onClick : toAccounts },
-  //         ]}
-  //         header={{
-  //           logo: <img alt='logo' src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" />,
-  //           text: 'Github Insight',
-  //         }}
-  //         footer={{
-  //           collapseButton: true,
-  //         }}
-  //       />
-  //     </Sider>
+      <Sider>
+        <Nav
+          defaultSelectedKeys={[getKey()]}
+          style={{ maxWidth: 200, height: '100%' }}
+          items={[
+            { itemKey: 'Repos', text: 'Repos', icon: <IconBox size="large" /> , onClick : toRepos},
+            { itemKey: 'Comparation', text: 'Comparation', icon: <IconSimilarity size='large' />, onClick : toComparation },
+            { itemKey: 'Accounts', text: 'Accounts', icon: <IconUserSetting size="large" /> , onClick : toAccounts },
+          ]}
+          header={{
+            logo: <img alt='logo' src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" />,
+            text: 'Github Insight',
+          }}
+          footer={{
+            collapseButton: true,
+          }}
+        />
+      </Sider>
 
-  //     <Layout>
-  //         <TopBar></TopBar>
-  //         {getLayOut()}
-  //         <Footer></Footer>
-  //     </Layout>
-  //   </Layout>
-  // );
+      <Layout>
+          <TopBar></TopBar>
+          {getLayOut()}
+          <Footer></Footer>
+      </Layout>
+    </Layout>
+  );
 };
