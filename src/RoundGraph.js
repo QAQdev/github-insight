@@ -2,17 +2,30 @@ import React,{useState}from 'react'
 import ReactECharts from 'echarts-for-react';
 import { Card } from '@douyinfe/semi-ui';
 export default function RoundGraph(props) {
-    const [data,setData] = useState( [
-        { value: 20, name: 'Python' },
-        { value: 15, name: 'C++' },
-        { value: 5, name: 'Javascript' },
-        { value: 20, name: 'Cython' },
-        { value: 40, name: 'Rust' }
-        ])
+
+    var content = 
+    [
+      { value: 20, name: 'Python' },
+      { value: 15, name: 'C++' },
+      { value: 5, name: 'Javascript' },
+      { value: 20, name: 'Cython' },
+      { value: 40, name: 'Rust' }
+    ]
+    var text = 'Languaege'
+    if(props.content)
+    {
+      content = props.content;
+    }
+    if(props.text)
+    {
+      text = props.text
+    }
+
+    const [data,setData] = useState(content)
     
     const options =  {
         title: {
-          text: props.type,
+          text: text,
           subtext: 'Currently',
           left: 'center'
         },
@@ -21,16 +34,16 @@ export default function RoundGraph(props) {
           formatter: "{a} <br/>{b} : {d}%" 
         },
         legend: {
-          orient: 'vertical',
-          top: 'top',
-          left: 'left'
+          orient: 'horizontal',
+          top: 'bottom',
+          left: 'center'
         },
         series: [
           {
             name: 'Proportion',
             type: 'pie',
-            center: ['50%','50%'],
-            radius: '50%',
+            center: ['50%','45%'],
+            radius: '45%',
             data:data,
             emphasis: {
               itemStyle: {
@@ -44,8 +57,8 @@ export default function RoundGraph(props) {
       };
     return (
         <Card
-        style={{ maxWidth: 720 }}
-        shadows='hover'
+          style={{ maxWidth: 360 }}
+          shadows='hover'
         >
         <ReactECharts option={options} />
         </Card>

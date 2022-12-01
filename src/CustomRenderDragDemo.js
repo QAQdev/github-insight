@@ -196,7 +196,7 @@ export default class CustomRenderDragDemo extends React.Component
                     shadows='hover'
                 >
                     <Transfer
-                        style={{ height : 500 }}
+                        style={{ width : 500 }}
                         onChange = {values => this.props.onChange(values)}
                         className="component-transfer-demo-custom-panel"
                         renderSourcePanel={this.renderSourcePanel}
