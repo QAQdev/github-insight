@@ -9,7 +9,6 @@ export default function SearchBar(props) {
     const [str, changeStr] = React.useState()
 
     function handleSubmit() {
-
         // 这里用 axios 向后端发起请求，获得这些内容
         const headerJSON = 
         {
@@ -24,6 +23,7 @@ export default function SearchBar(props) {
         var url = window.back_url + window.get_repo;
         
         var content = {}
+        props.onSubmit(content)
         axios.post
         (
             url,
@@ -36,10 +36,11 @@ export default function SearchBar(props) {
             {
                 content = res.data.content;
                 props.onSubmit(content)
+                // console.log(res.data)
             }
         ).catch
         (
-            (e) => 
+            (e) =>
             {
                 console.log(e)
             }
@@ -49,14 +50,14 @@ export default function SearchBar(props) {
     return (
 
         <Form render={({ values }) => (
-            <>
+            <div>
                 <Row>
                     <Form.Input 
                         onChange={(str) => {changeStr(str)}}
                         prefix={<IconSearch />} field='Try input a repo link!' placeholder='Dive into Github...' 
                     />
                 </Row>
-            </>
+            </div>
         )}
             onValueChange={values => setRepoLink(values['Try input a repo link!'])}
             onSubmit={handleSubmit}

@@ -14,27 +14,24 @@ export default class CustomerPage extends React.Component
             user_name : "",
             user_code : null,
             user_id   : null,
-            is_logged : false
+            is_logged : false,
+            content : null
         }
     }
 
-    handelLogin(data)
-    {
-        if(data)
-        {
-            this.state.user_name = data.user_name;
-            this.state.user_code = data.user_code;
+    handelLogin(data) {
+        if (data) {
+            this.state.content = data;
             this.setState
             (
                 {
-                    user_name : this.state.user_name,
-                    user_code : this.state.user_code,
-                    is_logged : true
+                    content: this.state.content,
+                    is_logged: true
                 }
+                // console.log("aaa", co)
             )
         }
     }
-
 
     getCustomerPage()
     {
@@ -47,7 +44,7 @@ export default class CustomerPage extends React.Component
         else 
         {
             return (
-                <CardOfName user_name = {this.state.user_name}></CardOfName>
+                <CardOfName content = {this.state.content}></CardOfName>
             )
         }
     }

@@ -22,20 +22,25 @@ import CallLineGraph from './CallLineGraph';
 import CallRoundGraph from './CallRoundGraph';
 import Allin from './Allin';
 import CallBarChart from './CallBarChart';
+import ErrorPage from "./ErrorPage";
 
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
-window.back_url = "http://10.112.35.32:5000"
+// window.back_url = "http://10.162.93.173:5000"
+window.back_url = "http://192.168.43.162:5000"
 window.get_commit = "/get_commit/"
 window.get_repo = "/get_repo/"
 window.get_contributors = "/get_contributors/"
-window.get_contributors_all = "/get_contributors/all"
+window.get_contributors_all = "/get_contributors/all/"
+// window.get_contributors_all = "/contributors/local/"
 window.get_user = "/get_user/"
 window.get_commit_by_time = "/get_commit_by_time/"
-window.get_contributors_core = "/get_contributors/core"
+window.get_contributors_core = "/get_contributors/core/"
+// window.get_contributors_core = "/contributors/core/"
+
 window.get_cloud = "/cloud/"
-window.get_company_commits = "/get_company_commits"
-window.get_update = "/update_repo"
+window.get_company_commits = "/get_company_commits/"
+window.get_update = "/update_repo/"
 
 window.repo_map = 
 {
@@ -75,16 +80,25 @@ export default function App() {
 
   const [lay_out_state, changeLayoutState] = React.useState("Repos");
 
-  function addNewRepo(repo) 
+  const [error_page, changeErrorState] = React.useState(false);
+
+  function addNewRepo(repo)
   {
-    addRepoToList(repoList.concat(repo))
-    addRepoNameList(repo_name_list.concat(repo.name))
-    addRepoUrlList(repo_url_list.concat(repo.link))
+    // 检测repo的信息是否合法，做错误页面的切换
+    if(repo.id == null){
+      toErrorPage();
+    }
+    else {
+      noErrorPage();
+      addRepoToList(repoList.concat(repo))
+      addRepoNameList(repo_name_list.concat(repo.name))
+      addRepoUrlList(repo_url_list.concat(repo.link))
+    }
   }
 
   function getLayOut()
   {
-    if(lay_out_state == "Repos")
+    if(lay_out_state === "Repos")
     {
       return (
           <Content style={{
@@ -102,7 +116,7 @@ export default function App() {
             >
               <SearchBar onSubmit={addNewRepo} />
               {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
-              <ReposGroup repoList={repoList} />
+              {error_page ? <ErrorPage/>:<ReposGroup repoList={repoList} />}
               {/* <Graph/>
               <DoubleGraph/>
               <RoundGraph/>
@@ -112,11 +126,12 @@ export default function App() {
               <CompareShowing />
               <CustomerLogin />
               <CardOfName></CardOfName> */}
+              {/*<ErrorPage/>*/}
             </div>
           </Content>          
       )
     }
-    else if(lay_out_state == "Comparation")
+    else if(lay_out_state === "Comparation")
     {
       return (
         <CompareShowing 
@@ -125,12 +140,17 @@ export default function App() {
         />
       )
     }
-    else if(lay_out_state == "Accounts")
+    else if(lay_out_state === "Accounts")
     {
       return (
         <div>
           <CustomerPage></CustomerPage>
         </div>
+      )
+    }
+    else if(lay_out_state === "ErrorPage") {
+      return (
+          <ErrorPage></ErrorPage>
       )
     }
     else 
@@ -157,6 +177,16 @@ export default function App() {
   const toAccounts = () =>
   {
     changeLayoutState("Accounts");
+  }
+
+  const toErrorPage = () =>
+  {
+    changeErrorState(true);
+  }
+
+  const noErrorPage = () =>
+  {
+    changeErrorState(false);
   }
 
   function getKey()
