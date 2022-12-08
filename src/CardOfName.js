@@ -18,11 +18,7 @@ export default class CardOfName extends React.Component {
 
     render() {
         return (
-            <Card
-                style={{maxWidth: 1000}}
-                shadows='hover'
-            >
-
+           <div style={{height:470,margin:100}}>
                 <div
                     style={{textAlign: "center", justifyContent: "center"}}
                 >
@@ -74,7 +70,7 @@ export default class CardOfName extends React.Component {
                 {/*后做，以免打断线程初始化；最后跳入 start_kernel 函数。"}*/}
                 {/*</div>*/}
 
-            </Card>
+                </div>
         )
     }
 }

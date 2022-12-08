@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import { Card, Form, Space } from '@douyinfe/semi-ui';
-import { Button } from '@douyinfe/semi-ui/lib/es/skeleton/item';
+import {Button} from '@douyinfe/semi-ui';
 import { Input } from '@douyinfe/semi-ui';
+import {Col,Row} from '@douyinfe/semi-ui';
+import { IconGithubLogo } from '@douyinfe/semi-icons';
 import axios from "axios";
 
 export default class CustomerLogin extends React.Component
@@ -63,35 +65,19 @@ export default class CustomerLogin extends React.Component
 
     render() {
         return (
-            <Card
-                style={{ maxWidth: 500, textAlign: "center" , justifyContent : "center" }}
-                shadows='hover'
-            >
-                <div>
-                    
-                    <div>
-                        <h4>
-                            用户名
-                        </h4>
-                        <Input mode="" defaultValue="" onChange={(e) => {this.changeUserName(e)}}></Input>
-                    </div>
-                    
-                    {/*<div>*/}
-                    {/*    <h4>*/}
-                    {/*        密码*/}
-                    {/*    </h4>*/}
-                    {/*    <Input mode="password" defaultValue="" onChange={(e) => {this.changeUserCode(e)}}></Input>*/}
-                    {/*</div>*/}
-
-                    <div>
-                        <Space></Space>
-                    </div>
-
-                    <Space style={{textAlign: "center" , justifyContent : "center"} }>
-                        <button style={{textAlign: "center" , justifyContent : "center"}} theme="borderless" onClick = {this.login.bind(this)} >Login</button>
-                    </Space>
-                </div>
-            </Card>
+            <div style={{height:470,margin:100}}>
+               <Row>
+                    <Col offset={10}> <div>
+                    <img height="150" width="150" src={require('./github.jfif')} alt="" />
+                </div></Col>
+               </Row>
+               <br></br>
+                <Row >
+                    <Col  span={10} offset={6}><div><Input placeholder='Input the Github User name' mode="" defaultValue="" onChange={(e) => {this.changeUserName(e)}}></Input ></div></Col>
+                    <Col offset={16}><div><Button theme='light' type='primary' style={{ marginRight: 8 ,}} onClick = {this.login.bind(this)}>Seach</Button></div></Col>
+                </Row>
+            </div>
+                
         );
     }
 }

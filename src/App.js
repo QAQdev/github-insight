@@ -121,6 +121,7 @@ export default function App() {
       }
       return (
         <Allin 
+            about = {repoList[index].about}
             url = {showing_repo_url}
             repo_name = {repo_name_list[index]}
             key = {index}
@@ -144,6 +145,7 @@ export default function App() {
               style={{
                 borderRadius: '10px',
                 border: '1px solid var(--semi-color-border)',
+                minHeight:'550px',
                 height: 'auto',
                 padding: '32px',
               }}

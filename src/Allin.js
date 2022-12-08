@@ -108,7 +108,7 @@ export default class Allin extends React.Component
                         <br></br>
                         <Title heading={5}>About</Title>
                         <Paragraph>
-                            About Tensors and Dynamic neural networks in Python with strong GPU acceleration
+                        {this.props.about}
                         </Paragraph>
                         <br></br>
                         <Button loading = {msg=="update repo"?false:true}onClick={() => {this.update_database()}}>{msg}</Button>

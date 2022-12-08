@@ -112,7 +112,7 @@ export default class CompareShowing extends React.Component
         }
         
         return (
-            <div>
+            <div style={{minHeight:560,margin:50}}>
                 <CustomRenderDragDemo 
                     repo_names = {this.state.repo_names}
                     onChange = {this.handelSubmit.bind(this)}
