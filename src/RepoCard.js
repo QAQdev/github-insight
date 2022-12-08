@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography } from '@douyinfe/semi-ui';
+import { Button, Card, Typography } from '@douyinfe/semi-ui';
 import { IconLink } from '@douyinfe/semi-icons';
 
 export default function RepoCard(props) {
@@ -12,6 +12,24 @@ export default function RepoCard(props) {
             title={props.name}
             headerLine={true}
             style={{ width: 240 }}
+            actions=
+            {[
+                <Button
+                    onClick={() => 
+                    {
+                        (props.url === props.showing_url)?
+                        props.onSubmitRepo(null):
+                        props.onSubmitRepo(props.url)
+                    }
+                }
+                >
+                    {
+                        (props.url === props.showing_url)?
+                        "停止展示细节":
+                        "显示仓库细节"
+                    }
+                </Button>
+            ]}
             headerExtraContent={
                 <Text
                     link={{ href: props.link }}

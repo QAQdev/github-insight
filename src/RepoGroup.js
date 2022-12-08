@@ -11,7 +11,11 @@ export default function ReposGroup(props) {
         <CardGroup>
             {
                 repoList.map((repo) => (
-                    <RepoCard key={repo.id} about={repo.about} name={repo.name} link={repo.link}></RepoCard>
+                    <RepoCard 
+                        onSubmitRepo={(url) => {props.onSubmitRepo(url)}}
+                        url = {repo.link}
+                        showing_url = {props.showing_url}
+                        key={repo.id} about={repo.about} name={repo.name} link={repo.link}></RepoCard>
                 ))
             }
         </CardGroup>

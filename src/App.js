@@ -27,7 +27,8 @@ import ErrorPage from "./ErrorPage";
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
 // window.back_url = "http://10.162.93.173:5000"
-window.back_url = "http://192.168.43.162:5000"
+// window.back_url = "http://192.168.43.162:5000"
+window.back_url = "http://10.112.35.32:5000"
 window.get_commit = "/get_commit/"
 window.get_repo = "/get_repo/"
 window.get_contributors = "/get_contributors/"
@@ -82,6 +83,8 @@ export default function App() {
 
   const [error_page, changeErrorState] = React.useState(false);
 
+  const [showing_repo_url, changeRepoUrl] = React.useState(null);
+
   function addNewRepo(repo)
   {
     // 检测repo的信息是否合法，做错误页面的切换
@@ -94,6 +97,37 @@ export default function App() {
       addRepoNameList(repo_name_list.concat(repo.name))
       addRepoUrlList(repo_url_list.concat(repo.link))
     }
+  }
+
+  function get_showing_repo()
+  {
+    if(showing_repo_url === null)
+    {
+      return (null);
+    }
+    else 
+    {
+      var index = -1;
+      for(var i=0; i<repo_url_list.length; i++)
+      {
+        if(repo_url_list[i] === showing_repo_url)
+        {
+          index = i;
+        }
+      }
+      if(index === -1)
+      {
+        return null;
+      }
+      return (
+        <Allin 
+            url = {showing_repo_url}
+            repo_name = {repo_name_list[index]}
+            key = {index}
+        ></Allin>
+      )
+    }
+    
   }
 
   function getLayOut()
@@ -116,7 +150,11 @@ export default function App() {
             >
               <SearchBar onSubmit={addNewRepo} />
               {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
-              {error_page ? <ErrorPage/>:<ReposGroup repoList={repoList} />}
+              {error_page ? <ErrorPage/>:<ReposGroup
+                         onSubmitRepo={(url) => {changeRepoUrl(url)}}
+                         showing_url={showing_repo_url}
+                         repoList={repoList} />}
+              {get_showing_repo()}
               {/* <Graph/>
               <DoubleGraph/>
               <RoundGraph/>
