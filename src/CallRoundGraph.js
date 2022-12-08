@@ -29,6 +29,10 @@ export default class CallRoundGraph extends React.Component
             "Content-Type": "application/json"
         };
         let temp_url = "https://github.com/pytorch/pytorch";
+        if(this.props.url)  //否则contributors全是pytorch的
+        {
+            temp_url = this.props.url
+        }
         var pack = 
         {
             url : temp_url,

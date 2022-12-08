@@ -99,6 +99,7 @@ export default class Allin extends React.Component
                         url = {this.state.url}
                     ></CallBarChart>
                     <Cloud
+                        url = {this.state.url}
                         num = {window.repo_map[this.state.url]}
                     ></Cloud>
                 </div>
