@@ -24,11 +24,11 @@ export default class Cloud extends React.Component
             console.log("cloud_url:" + url)
             return (
                 <Card
-                    style={{ maxWidth: 1000 }}
+                    style={{ maxWidth: 900 }}
                     shadows='hover'
                 >
                     <img src={window.back_url + window.get_cloud + cloud_value+'/'+url}
-                        alt={"云图无法显示" + cloud_value} width={900} height={540}>
+                        alt={"云图无法显示" + cloud_value} width={800} height={540}>
                     </img>
                 </Card>
             )

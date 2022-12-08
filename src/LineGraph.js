@@ -50,12 +50,7 @@ export default function LineGraph(props) {
     ydata: ydata
   })
 
-  var text = "defaut name"
-  if(props.repo_name)
-  {
-    text = props.repo_name
-  }
-
+  var text = props.repo_name;
   const options = {
     tooltip: {
       trigger: 'axis',
@@ -125,7 +120,7 @@ export default function LineGraph(props) {
 
   return (
     <Card
-      style={{ maxWidth: 720 }}
+      style={{ maxWidth: 1100 }}
       shadows='hover'
     >
       <ReactECharts option={options} />

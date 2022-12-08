@@ -88,6 +88,8 @@ export default class CallRoundGraph extends React.Component
                 <RoundGraph
                     content = {this.state.content}
                     text = {text}
+                    maxWidth = {this.props.maxWidth}
+                    showlegend = {this.props.showlegend}
                 ></RoundGraph>
             )
         }

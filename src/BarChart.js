@@ -8,31 +8,22 @@ import { useState, useEffect } from 'react';
 export default function BarChart(props) 
 {
   // axios获取后端数据
-    var con = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    var d_data = [820, 932, 901, 934, 1290, 1330, 1320];
-    if(props.contributer)
-    {
-      con = props.contributer
-    }
-    if(props.data)
-    {
-      d_data = props.data
-    }
-    const [data, setData] = useState({
-        contributer: con,
-        data: d_data
-    })
+    const [data, setData] = useState(props.data)
+    var repo_name = props.repo_name
     const options = {
     title: {
         left:'center',
-        text: 'Company',
-        subtext: 'For Commiter/Stargazer/Issue'
+        text: repo_name,
+        subtext: 'Currently'
     },
+    dataset: {
+      dimensions: ['name', 'value'],
+      source: data
 
-
+    },
     xAxis: {
-        type:'category',
-        data: data.contributer
+        type:'category', 
+        axisLabel: { interval: 0, rotate: 40 },
     },
     yAxis: {
         type:'value',
@@ -40,7 +31,7 @@ export default function BarChart(props)
         show: false
         },
         axisTick: {
-        show: false
+        show: true
         },
         axisLabel: {
         color: '#999'
@@ -69,20 +60,20 @@ export default function BarChart(props)
         },
         label: {
             show: true,
-            position: 'top'
+            position: 'top',
+            color: '#e4acb1'
           },
         emphasis: {
             itemStyle: {
             color: "#D1F1F6"
             }
         },
-        data: data.data
         }
     ]
     };
   return (
     <Card
-      style={{ maxWidth: 720 }}
+      style={{ maxWidth: 1100 }}
       shadows='hover'
     >
       <ReactECharts option={options} />

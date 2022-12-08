@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import BarChart from "./BarChart";
-
+import { Spin } from "@douyinfe/semi-ui";
 export default class CallBarChart extends React.Component 
 {
     // url
@@ -37,7 +37,7 @@ export default class CallBarChart extends React.Component
         console.log(pack)
         axios.post
         (
-            window.back_url + window.get_company_commits,
+            window.back_url + window.get_contributors_all,
             JSON.stringify(pack),
             {headers : headerJSON}
         )
@@ -71,8 +71,8 @@ export default class CallBarChart extends React.Component
             console.log(this.state.content)
             return (
                 <BarChart
-                    contributer = {this.state.content.contributer}
-                    data = {this.state.content.data}
+                    repo_name = {this.props.repo_name}
+                    data = {this.state.content}
                 ></BarChart>
             )
         }
@@ -80,7 +80,7 @@ export default class CallBarChart extends React.Component
         {
             this.get_from_server();
             return (
-                <div>loading</div>
+                <Spin size="large"></Spin>
             )
         }
     }
