@@ -85,9 +85,11 @@ export default class Clouds extends React.Component
                         <Divider margin='12px' />
                         {/* <BarChart /> */}
                         <CallBarChart 
+                            repo_name={this.state.target_names[0]}
                             url={this.state.target_urls[0].num}>
                         </CallBarChart>
                         <CallBarChart 
+                            repo_name={this.state.target_names[1]}
                             url={this.state.target_urls[1].num}>
                         </CallBarChart>
                         <br />

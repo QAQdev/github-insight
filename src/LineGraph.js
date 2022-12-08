@@ -61,7 +61,8 @@ export default function LineGraph(props) {
 
     title: {
       left: 'center',
-      text: text
+      text: text,
+      subtext: 'commits'
     },
     toolbox: {
       feature: {

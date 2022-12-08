@@ -14,7 +14,7 @@ export default function BarChart(props)
     title: {
         left:'center',
         text: repo_name,
-        subtext: 'Currently'
+        subtext: 'contributor'
     },
     dataset: {
       dimensions: ['name', 'value'],

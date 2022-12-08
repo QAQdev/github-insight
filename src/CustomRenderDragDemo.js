@@ -91,12 +91,12 @@ export default class CustomRenderDragDemo extends React.Component
                 break;
         }
         return (
-            <Card>
+            <Card style={{width:400}}>
                 <section className="source-panel">
                     <div className="panel-header sp-font">仓库列表</div>
                     <div className="panel-main">
                         <Input
-                            style={{ width: 454, margin: '12px 14px' }}
+                            style={{ width: 200, margin: '12px 16px' }}
                             prefix={<IconSearch />}
                             onChange={onSearch}
                             showClear
