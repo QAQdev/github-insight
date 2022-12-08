@@ -14,7 +14,7 @@ export default function RoundGraph(props) {
     var text = 'Languaege'
     if(props.content)
     {
-      content = props.content;
+      content = props.content.sort();
     }
     if(props.text)
     {
@@ -29,21 +29,21 @@ export default function RoundGraph(props) {
           subtext: 'Currently',
           left: 'center'
         },
+        legend: {
+          show:props.showlegend,
+          orient: 'vertical',
+          left: 'left'
+        },
         tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b} : {d}%" 
-        },
-        legend: {
-          orient: 'horizontal',
-          top: 'bottom',
-          left: 'center'
         },
         series: [
           {
             name: 'Proportion',
             type: 'pie',
-            center: ['50%','45%'],
-            radius: '45%',
+            center: ['50%','60%'],
+            radius: '60%',
             data:data,
             emphasis: {
               itemStyle: {
@@ -55,9 +55,11 @@ export default function RoundGraph(props) {
           }
         ]
       };
+    var maxwidth = 360;
+    if(props.maxWidth)maxwidth = props.maxWidth;
     return (
         <Card
-          style={{ maxWidth: 360 }}
+          style={{ maxWidth: maxwidth }}
           shadows='hover'
         >
         <ReactECharts option={options} />

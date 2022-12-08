@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import LineGraph from "./LineGraph";
-
+import { Spin } from "@douyinfe/semi-ui";
 export default class CallLineGraph extends React.Component 
 {
     // repo_name
@@ -80,7 +80,7 @@ export default class CallLineGraph extends React.Component
         {
             this.get_from_server();
             return (
-                <div>loading</div>
+                <Spin size="large" />
             )
         }
     }
