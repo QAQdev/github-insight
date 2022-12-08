@@ -27,8 +27,10 @@ export default function TopBar() {
                                 marginRight: '13px',
                             }}
                         />
-                        <Avatar color="blue" size="small">
-                            CZL
+                        <Avatar 
+                            src="insight.png"
+                            size="small"
+                        >
                         </Avatar>
                     </>
                 }
