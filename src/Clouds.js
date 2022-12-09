@@ -22,6 +22,7 @@ export default class Clouds extends React.Component
         super(props)
         this.state =
         {
+            target_stars : props.stars,
             target_urls : props.cloud_links,
             target_names : props.repo_names
         }
@@ -43,7 +44,7 @@ export default class Clouds extends React.Component
             var array = []
             // for(var i=0; i<2; i++)
             // {
-            //     console.log("clouds url" + this.state.target_urls[i].num)
+            //     // console.log("clouds url" + this.state.target_urls[i].num)
             //     array.push
             //     (
             //         <Allin 
@@ -61,7 +62,7 @@ export default class Clouds extends React.Component
                         shadows='hover'
                     >
                         <Title style={{ margin: '24px 0' }}>{this.state.target_names[0].toUpperCase()} <text style={{"color":"red"}}>vs</text> {this.state.target_names[1].toUpperCase()}</Title>
-                        <Text icon={<IconUserGroup />}>1.7k follower <b>vs</b> 2.4k follower</Text>
+                        <Text icon={<IconUserGroup />}>{this.state.target_stars[0]} follower <b>vs</b> {this.state.target_stars[1]} follower</Text>
                         <br></br>
                         <Paragraph>
                            Here we compare the selected 2 repos
@@ -99,20 +100,56 @@ export default class Clouds extends React.Component
                         <Tabs type="button">
                             <TabPane tab="Stargazer" itemKey="1">
                                 <Row>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[0]}/></div></Col>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[1]} /></div></Col>
+                                    <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[0].num}
+                                        text={"Stargazer"}
+                                        title={this.state.target_names[0]}/>
+                                    </div></Col>
+                                    <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[1].num}
+                                        text={"Stargazer"}
+                                        title={this.state.target_names[1]}/>
+                                        </div></Col>
                                 </Row>
                             </TabPane>
                             <TabPane tab="Committer" itemKey="2">
                                 <Row>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[0]}/></div></Col>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[1]} /></div></Col>
+                                    <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[0].num}
+                                        text={"Committer"}
+                                        title={this.state.target_names[0]}/>
+                                    </div></Col>
+                                    <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[1].num}
+                                        text={"Committer"}
+                                        title={this.state.target_names[1]}/>
+                                    </div></Col>
                                 </Row>
                             </TabPane>
                             <TabPane tab="Issue" itemKey="3">
                                 <Row>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[0]}/></div></Col>
-                                    <Col span={8} order={3}><div><RoundGraph text={this.state.target_names[1]} /></div></Col>
+                                <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[0].num}
+                                        text={"Issue"}
+                                        title={this.state.target_names[0]}/>
+                                    </div></Col>
+                                    <Col span={8} order={3}><div>
+                                    <CallRoundGraph 
+                                        is_company = {true}
+                                        url = {this.state.target_urls[1].num}
+                                        text={"Issue"}
+                                        title={this.state.target_names[1]}/>
+                                    </div></Col>
                                 </Row>
                             </TabPane>
                         </Tabs>

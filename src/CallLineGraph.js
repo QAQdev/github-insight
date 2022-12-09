@@ -33,7 +33,7 @@ export default class CallLineGraph extends React.Component
         }
 
         var content = {}
-        console.log("get from server");
+        // console.log("get from server");
         axios.post
         (
             window.back_url + window.get_commit_by_time,
@@ -57,7 +57,7 @@ export default class CallLineGraph extends React.Component
         (
             (e) => 
             {
-                console.log(e)
+                // console.log(e)
             }
         )
     }
@@ -66,8 +66,8 @@ export default class CallLineGraph extends React.Component
     {
         if(this.state.is_inited)
         {
-            console.log("content")
-            console.log(this.state.content)
+            // console.log("content")
+            // console.log(this.state.content)
             return (
                 <LineGraph 
                     timeline = {this.state.content.timeline}

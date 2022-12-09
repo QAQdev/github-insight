@@ -35,14 +35,15 @@ export default function SearchBar(props) {
             (res) =>
             {
                 content = res.data.content;
+                // console.log(content.stargazers_count)
                 props.onSubmit(content)
-                // console.log(res.data)
+                // // console.log(res.data)
             }
         ).catch
         (
             (e) =>
             {
-                console.log(e)
+                // console.log(e)
             }
         )
     }

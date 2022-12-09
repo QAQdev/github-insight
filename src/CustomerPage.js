@@ -28,7 +28,7 @@ export default class CustomerPage extends React.Component
                     content: this.state.content,
                     is_logged: true
                 }
-                // console.log("aaa", co)
+                // // console.log("aaa", co)
             )
         }
     }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import RoundGraph from "./RoundGraph";
-
+import { Spin } from "@douyinfe/semi-ui";
 export default class CallRoundGraph extends React.Component 
 {
     // is_core
@@ -10,13 +10,22 @@ export default class CallRoundGraph extends React.Component
     {
         super(props);
         var is_core = false;
+        var is_company = false;
+        var company = "No";
         if(props.is_core)
         {
             is_core = true;
         }
+        if(props.is_company)
+        {
+            is_company = true;
+            company = props.text
+        }
         this.state = 
         {
             is_inited : false,
+            is_company : is_company,
+            company : company,
             is_core : is_core,
             content : []
         }
@@ -39,12 +48,25 @@ export default class CallRoundGraph extends React.Component
         }
 
         var content = {}
-        console.log("get from server");
+        // console.log("get from server");
         var url = window.back_url + window.get_contributors_all;
         if(this.state.is_core)
         {
             url = window.back_url + window.get_contributors_core;
         }
+        if(this.state.is_company&&this.state.company == "Stargazer")
+        {
+            url = window.back_url + window.get_company_stargazers;
+        }
+        if(this.state.is_company&&this.state.company == "Committer")
+        {
+            url = window.back_url + window.get_company_commits;
+        }
+        if(this.state.is_company&&this.state.company == "Issue")
+        {
+            url = window.back_url + window.get_company_issues;
+        }
+        
         axios.post
         (
             url,
@@ -68,7 +90,7 @@ export default class CallRoundGraph extends React.Component
         (
             (e) => 
             {
-                console.log(e)
+                // console.log(e)
             }
         )
     }
@@ -77,17 +99,23 @@ export default class CallRoundGraph extends React.Component
     {
         if(this.state.is_inited)
         {
-            console.log("content")
-            console.log(this.state.content)
+            // console.log("content")
+            // console.log(this.state.content)
             var text = "contributors";
             if(this.state.is_core)
             {
                 text = "core contributors";
             }
+            if(this.props.text == "Stargazer"||this.props.text == "Committer"||this.props.text == "Issue")
+            {
+                this.state.is_company = true;
+            }
             return (
                 <RoundGraph
+                    title = {this.props.title}
+                    is_company = {this.state.is_company}
                     content = {this.state.content}
-                    text = {text}
+                    text = {this.props.text}
                     maxWidth = {this.props.maxWidth}
                     showlegend = {this.props.showlegend}
                 ></RoundGraph>
@@ -97,7 +125,7 @@ export default class CallRoundGraph extends React.Component
         {
             this.get_from_server();
             return (
-                <div>loading</div>
+                <Spin size="large"></Spin>
             )
         }
     }

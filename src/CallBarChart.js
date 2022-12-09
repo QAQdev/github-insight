@@ -33,8 +33,8 @@ export default class CallBarChart extends React.Component
         }
 
         var content = {}
-        console.log("get from server");
-        console.log(pack)
+        // console.log("get from server");
+        // console.log(pack)
         axios.post
         (
             window.back_url + window.get_contributors_all,
@@ -58,7 +58,7 @@ export default class CallBarChart extends React.Component
         (
             (e) => 
             {
-                console.log(e)
+                // console.log(e)
             }
         )
     }
@@ -67,8 +67,8 @@ export default class CallBarChart extends React.Component
     {
         if(this.state.is_inited)
         {
-            console.log("call bar content")
-            console.log(this.state.content)
+            // console.log("call bar content")
+            // console.log(this.state.content)
             return (
                 <BarChart
                     repo_name = {this.props.repo_name}
