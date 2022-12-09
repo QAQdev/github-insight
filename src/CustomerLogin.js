@@ -52,13 +52,13 @@ export default class CustomerLogin extends React.Component
             (
                 (res) => {
                     data = res.data;
-                    // console.log(data);
+                    // // console.log(data);
                     if (this.props.onChange) {
                         this.props.onChange(data)
                     }
                 }
             ).catch((e) => {
-                console.log(e);
+                // console.log(e);
             }
         )
     }

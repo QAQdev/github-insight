@@ -13,7 +13,7 @@ export default class CardOfName extends React.Component {
                 id: props.id
             }
 
-        // console.log(this.props.content.company);
+        // // console.log(this.props.content.company);
     }
 
     render() {

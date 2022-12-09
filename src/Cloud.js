@@ -20,8 +20,8 @@ export default class Cloud extends React.Component
         const url = this.props.url
         if(this.state.is_init)
         {
-            console.log("img reloads" + cloud_value)
-            console.log("cloud_url:" + url)
+            // console.log("img reloads" + cloud_value)
+            // console.log("cloud_url:" + url)
             return (
                 <Card
                     style={{ maxWidth: 900 }}

@@ -28,7 +28,7 @@ import ErrorPage from "./ErrorPage";
 
 // window.back_url = "http://10.162.93.173:5000"
 // window.back_url = "http://192.168.43.162:5000"
-window.back_url = "http://10.112.35.32:5000"
+window.back_url = "http://121.4.99.100:5000"
 window.get_commit = "/get_commit/"
 window.get_repo = "/get_repo/"
 window.get_contributors = "/get_contributors/"
@@ -38,7 +38,9 @@ window.get_user = "/get_user/"
 window.get_commit_by_time = "/get_commit_by_time/"
 window.get_contributors_core = "/get_contributors/core/"
 // window.get_contributors_core = "/contributors/core/"
-
+window.get_company_issues = "/get_company_issues/"
+window.get_company_stargazers = "/get_company_stargazers/"
+window.get_company_commits = "/get_company_commits/"
 window.get_cloud = "/cloud/"
 window.get_company_commits = "/get_company_commits/"
 window.get_update = "/update_repo/"
@@ -63,7 +65,11 @@ export default function App() {
   const { Sider, Content } = Layout;
 
   const [repoList, addRepoToList] = React.useState([{
-    "id": 1,
+    "id": 1.0,
+    "forks_count":1.0,
+    "owner":"zju",
+    "watchers_count":1000,
+    "stargazers_count":1200,
     "name": "pytorch",
     "about": "About Tensors and Dynamic neural networks in Python with strong GPU acceleration",
     "link": "https://github.com/pytorch/pytorch"
@@ -74,6 +80,12 @@ export default function App() {
     ["pytorch"]
   )
 
+  const [repo_star_list, addRepoStarList] = React.useState
+  (
+    [1200]
+  )
+
+  
   const [repo_url_list, addRepoUrlList] = React.useState
   (
     ["https://github.com/pytorch/pytorch"]
@@ -94,6 +106,8 @@ export default function App() {
     else {
       noErrorPage();
       addRepoToList(repoList.concat(repo))
+      addRepoStarList(repo_star_list.concat(repo.stargazers_count))
+      // console.log(repo.stargazers_count)
       addRepoNameList(repo_name_list.concat(repo.name))
       addRepoUrlList(repo_url_list.concat(repo.link))
     }
@@ -121,6 +135,7 @@ export default function App() {
       }
       return (
         <Allin 
+            stargazer = {repoList[index].stargazers_count}
             about = {repoList[index].about}
             url = {showing_repo_url}
             repo_name = {repo_name_list[index]}
@@ -174,7 +189,8 @@ export default function App() {
     else if(lay_out_state === "Comparation")
     {
       return (
-        <CompareShowing 
+        <CompareShowing
+          starlist = {repo_star_list}
           urls = {repo_url_list}
           repo_names = {repo_name_list}
         />
@@ -205,7 +221,7 @@ export default function App() {
 
   const toRepos = () =>
   {
-    console.log("repos")
+    // console.log("repos")
     changeLayoutState("Repos");
   }
 
