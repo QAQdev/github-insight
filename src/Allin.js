@@ -41,7 +41,8 @@ export default class Allin extends React.Component
             url : url,
             repo_name : repo_name,
             is_init : false,
-            is_waiting : false
+            is_waiting : false,
+            msg : "update repo"
         }
     }
 
@@ -68,11 +69,13 @@ export default class Allin extends React.Component
         (
             (res) => 
             {
+                console.log("reached")
                 this.setState
                 (
                     {
                         is_init : false,
                         is_waiting : false
+                        
                     }
                 )
             }
@@ -84,10 +87,12 @@ export default class Allin extends React.Component
         if(this.state.is_init)
         {
             // console.log("All in url: " + this.state.url)
-            var msg = "update repo"
             if(this.state.is_waiting)
             {
-                msg = "waiting for the server to update..."
+                this.state.msg = "waiting for the server to update..."
+            }else
+            {
+                this.state.msg = "update repo"
             }
             const { Title, Text, Paragraph } = Typography;
             var stargazer = this.props.stargazer
@@ -120,7 +125,7 @@ export default class Allin extends React.Component
                         {this.props.about}
                         </Paragraph>
                         <br></br>
-                        <Button loading = {msg=="update repo"?false:true}onClick={() => {this.update_database()}}>{msg}</Button>
+                        <Button loading = {this.state.is_waiting} onClick={() => {this.update_database()}}>{this.state.msg}</Button>
                         <Divider margin='24px' />
                         <Title heading={3} style={{ margin: '8px 0', color: 'rgba(var(--semi-violet-5),1)' }}>Commits</Title>
                         <Text>Contributions to master, excluding merge commits and bot accounts</Text>

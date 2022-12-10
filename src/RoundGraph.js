@@ -4,7 +4,6 @@ import { Card } from '@douyinfe/semi-ui';
 export default function RoundGraph(props) {
     var content = []
     var text = 'Languaege'
-    console.log(props.content)
     if(props.is_company == true)
     {
       props.content.contributer.map((item,idx)=>(

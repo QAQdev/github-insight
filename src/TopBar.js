@@ -27,10 +27,10 @@ export default function TopBar() {
                                 marginRight: '13px',
                             }}
                         />
-                        <Avatar 
-                            src="insight.png"
-                            size="small"
-                        >
+                        <Avatar color="light-blue" 
+                        style={{ margin: 4 }} alt='Group 1'
+                        size="small">
+                            G1
                         </Avatar>
                     </>
                 }

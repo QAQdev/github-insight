@@ -48,7 +48,6 @@ export default class CallRoundGraph extends React.Component
         }
 
         var content = {}
-        // console.log("get from server");
         var url = window.back_url + window.get_contributors_all;
         if(this.state.is_core)
         {

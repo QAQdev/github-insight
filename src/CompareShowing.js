@@ -56,11 +56,12 @@ export default class CompareShowing extends React.Component
         }
         this.state = 
         {
-            stars : stars,
+            starslist : stars,
             urls : urls,
             repo_names : repo_names,
             links : [],
             names : [],
+            stars : [],
             is_init : false
         }
     }
@@ -71,17 +72,21 @@ export default class CompareShowing extends React.Component
         // console.log(new_links)
         var new_state_links;
         var new_state_names;
+        var new_state_stars;
         if(new_links.length >= 2)
         {
             new_state_links = [ {num : this.state.urls[new_links[0]]} , 
                                 {num : this.state.urls[new_links[1]]}];
             new_state_names = [ this.state.repo_names[new_links[0]],
                                 this.state.repo_names[new_links[1]]];
+            new_state_stars = [ this.state.starslist[new_links[0]],
+                                this.state.starslist[new_links[1]]];
         }
         else 
         {
             new_state_links = [];
             new_state_names = [];
+            new_state_stars = [];
         }
         
         this.setState
@@ -89,6 +94,7 @@ export default class CompareShowing extends React.Component
             {
                 links : new_state_links,
                 names : new_state_names,
+                stars : new_state_stars,
                 is_init : false
             }
         )
@@ -102,6 +108,7 @@ export default class CompareShowing extends React.Component
         {
             clouds_components = 
             (
+                
                 <Clouds 
                     stars = {this.state.stars}
                     cloud_links = {this.state.links}
