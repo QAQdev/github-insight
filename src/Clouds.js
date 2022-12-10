@@ -41,7 +41,6 @@ export default class Clouds extends React.Component
         }
         else 
         {
-            var array = []
             // for(var i=0; i<2; i++)
             // {
             //     // console.log("clouds url" + this.state.target_urls[i].num)
