@@ -33,6 +33,7 @@ export default function RoundGraph(props) {
           orient: 'vertical',
           left: 'left'
         },
+        color: ['#63b2ee','#76da91','#f8cb7f','#f89588','#7cd6cf','#9192ab','#7898e1','#efa666','#eddd86','#9987ce','#63b2ee','#76da91'],
         tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b} : {d}%" 
