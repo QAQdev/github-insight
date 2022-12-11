@@ -28,7 +28,7 @@ export default function RepoCard(props) {
                         "停止展示细节":
                         "显示仓库细节"
                     }
-                </Button>
+                </Button>,
             ]}
             headerExtraContent={
                 <Text

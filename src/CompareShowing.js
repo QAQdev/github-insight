@@ -10,38 +10,9 @@ export default class CompareShowing extends React.Component
     constructor(props)
     {
         super(props);
-        var urls = 
-        [
-            "https://github.com/pytorch/pytorch",
-            "https://github.com/pytorch/pytorch1",
-            "https://github.com/pytorch/pytorch2",
-            "https://github.com/pytorch/pytorch3",
-            "https://github.com/pytorch/pytorch4",
-            "https://github.com/pytorch/pytorch5",
-            "https://github.com/pytorch/pytorch6",
-            "https://github.com/pytorch/pytorch7",
-            "https://github.com/pytorch/pytorch8",
-            "https://github.com/pytorch/pytorch9",
-            "https://github.com/pytorch/pytorch10"
-        ]
-        var repo_names =
-        [
-            "pytorch1",
-            "pytorch2",
-            "pytorch3",
-            "pytorch4",
-            "pytorch5",
-            "pytorch6",
-            "pytorch7",
-            "pytorch8",
-            "pytorch9",
-            "pytorch10",
-            "pytorch11"
-        ]
-        var stars = [
-           "1200",
-           "2000"
-        ]
+        var urls = []
+        var repo_names = []
+        var stars = []
         if(this.props.urls)
         {
             urls = this.props.urls

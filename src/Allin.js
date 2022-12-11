@@ -95,9 +95,6 @@ export default class Allin extends React.Component
                 this.state.msg = "update repo"
             }
             const { Title, Text, Paragraph } = Typography;
-            var stargazer = this.props.stargazer
-            if(stargazer>=1000)stargazer = toString(stargazer/1000)+"k"
-            else stargazer = toString(stargazer)
             return (
                 <div>
                     {/* <CallLineGraph 
