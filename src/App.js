@@ -23,12 +23,12 @@ import CallRoundGraph from './CallRoundGraph';
 import Allin from './Allin';
 import CallBarChart from './CallBarChart';
 import ErrorPage from "./ErrorPage";
-
+import EmptyPage from './EmptyPage';
 // npm install react-sortable-hoc -S --legacy-peer-deps
 
 // window.back_url = "http://10.162.93.173:5000"
 // window.back_url = "http://192.168.43.162:5000"
-window.back_url = "http://121.4.99.100:5000"
+window.back_url = "http://121.4.99.100:5001"
 window.get_commit = "/get_commit/"
 window.get_repo = "/get_repo/"
 window.get_contributors = "/get_contributors/"
@@ -64,31 +64,22 @@ window.repo_map =
 export default function App() {
   const { Sider, Content } = Layout;
 
-  const [repoList, addRepoToList] = React.useState([{
-    "id": 1.0,
-    "forks_count":1.0,
-    "owner":"zju",
-    "watchers_count":1000,
-    "stargazers_count":1200,
-    "name": "pytorch",
-    "about": "About Tensors and Dynamic neural networks in Python with strong GPU acceleration",
-    "link": "https://github.com/pytorch/pytorch"
-  }]);
+  const [repoList, addRepoToList] = React.useState([]);
 
   const [repo_name_list, addRepoNameList] = React.useState
   (
-    ["pytorch"]
+    []
   )
 
   const [repo_star_list, addRepoStarList] = React.useState
   (
-    [1200]
+    []
   )
 
   
   const [repo_url_list, addRepoUrlList] = React.useState
   (
-    ["https://github.com/pytorch/pytorch"]
+    []
   )
 
   const [lay_out_state, changeLayoutState] = React.useState("Repos");
@@ -96,7 +87,6 @@ export default function App() {
   const [error_page, changeErrorState] = React.useState(false);
 
   const [showing_repo_url, changeRepoUrl] = React.useState(null);
-
   function addNewRepo(repo)
   {
     // 检测repo的信息是否合法，做错误页面的切换
@@ -167,21 +157,13 @@ export default function App() {
             >
               <SearchBar onSubmit={addNewRepo} />
               {/* repo数量非常多时，是全部平铺展示而不是在 Content 内部形成下滑条 */}
-              {error_page ? <ErrorPage/>:<ReposGroup
+              {
+              (error_page ? <ErrorPage/>:<ReposGroup
                          onSubmitRepo={(url) => {changeRepoUrl(url)}}
                          showing_url={showing_repo_url}
-                         repoList={repoList} />}
+                         repoList={repoList} />)
+              }
               {get_showing_repo()}
-              {/* <Graph/>
-              <DoubleGraph/>
-              <RoundGraph/>
-              <BarChart/>
-  
-              <CustomRenderDragDemo />
-              <CompareShowing />
-              <CustomerLogin />
-              <CardOfName></CardOfName> */}
-              {/*<ErrorPage/>*/}
             </div>
           </Content>          
       )
@@ -244,37 +226,14 @@ export default function App() {
   {
     changeErrorState(false);
   }
-
   function getKey()
   {
     return lay_out_state;
   }
 
-
-  // // 测试用return
-  // return (
-  //   // <CallLineGraph repo_name = "hzzz的仓库"></CallLineGraph>
-  //   // <div>
-  //   //   <CallRoundGraph></CallRoundGraph>
-  //   //   <CallRoundGraph is_core = {true}></CallRoundGraph>
-  //   // </div>  
-  //   <div>
-  //     {/* <Allin></Allin> */}
-  //     {/* <CompareShowing/> */}
-  //     <CallBarChart 
-  //       url = "https://github.com/pytorch/pytorch"
-  //     ></CallBarChart>
-  //   </div>
-  // )
-
-
   // 真正的return
   return (
     <Layout>
-
-      {/* 这个有点奇怪，分离之后反而显示不对了，你们拿到之后可以先看看怎么修 */}
-      {/* <SideBar></SideBar>  */}
-
       <Sider>
         <Nav
           defaultSelectedKeys={[getKey()]}

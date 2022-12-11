@@ -98,8 +98,6 @@ export default class CallRoundGraph extends React.Component
     {
         if(this.state.is_inited)
         {
-            // console.log("content")
-            // console.log(this.state.content)
             var text = "contributors";
             if(this.state.is_core)
             {

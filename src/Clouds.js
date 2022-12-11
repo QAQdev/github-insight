@@ -41,18 +41,6 @@ export default class Clouds extends React.Component
         }
         else 
         {
-            // for(var i=0; i<2; i++)
-            // {
-            //     // console.log("clouds url" + this.state.target_urls[i].num)
-            //     array.push
-            //     (
-            //         <Allin 
-            //             url = {this.state.target_urls[i].num}
-            //             repo_name = {this.state.target_names[i]}
-            //             key = {i}
-            //         ></Allin>
-            //     )
-            // }
             const { Title,Text,Paragraph } = Typography;
             return (
                 <div>
@@ -165,41 +153,4 @@ export default class Clouds extends React.Component
             this.get_allins()
         );
     }
-    
-    // if(! props.cloud_links)
-    // {
-    //     return (
-    //         <CardGroup></CardGroup>
-    //     )
-    // }
-
-    // const target_clouds = 
-    // props.cloud_links
-
-    
-    // // [
-    // //     {
-    // //         num : 1
-    // //     },
-    // //     {
-    // //         num : 2
-    // //     }
-    // // ]
-
-    // if(target_clouds.length < 2)
-    // {
-    //     return (
-    //         <CardGroup></CardGroup>
-    //     )
-    // }
-
-    // var dyna_id = props.id
-
-    // return (
-    //     <CardGroup>
-    //         {
-    //             this.get_allins()
-    //         }
-    //     </CardGroup>
-    // );
 }
