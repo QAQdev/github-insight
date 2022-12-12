@@ -9,7 +9,6 @@ export default function ErrorPage() {
                 title={'暂时没有仓库'}
                 image={<IllustrationNoContent style={{width: 200, height: 200}}/>}
                 layout="horizontal"
-                description="你来到了没有知识存在的荒原……"
                 style={{width: 500, margin: 'auto', padding: 100,}}
             >
             </Empty>

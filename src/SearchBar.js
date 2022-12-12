@@ -43,7 +43,7 @@ export default function SearchBar(props) {
         (
             (e) =>
             {
-                // console.log(e)
+                console.log(e)
             }
         )
     }
@@ -56,8 +56,7 @@ export default function SearchBar(props) {
                     <Form.Input 
                         onChange={(str) => {changeStr(str)}}
                         prefix={<IconSearch />} field='Try input a repo link!' 
-                        placeholder="https://github.com/pytorch/pytorch" 
-                        defaultValue="https://github.com/pytorch/pytorch"
+                        placeholder="Dive into Github!" 
                     />
                 </Row>
             </div>

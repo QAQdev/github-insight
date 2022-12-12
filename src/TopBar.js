@@ -30,7 +30,7 @@ export default function TopBar() {
                         <Avatar color="light-blue" 
                         style={{ margin: 4 }} alt='Group 1'
                         size="small">
-                            G1
+                            G2
                         </Avatar>
                     </>
                 }

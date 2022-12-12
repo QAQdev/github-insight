@@ -73,8 +73,8 @@ export default class CustomerLogin extends React.Component
                </Row>
                <br></br>
                 <Row >
-                    <Col  span={10} offset={6}><div><Input placeholder='Input the Github User name' mode="" defaultValue="" onChange={(e) => {this.changeUserName(e)}}></Input ></div></Col>
-                    <Col offset={16}><div><Button theme='light' type='primary' style={{ marginRight: 8 ,}} onClick = {this.login.bind(this)}>Seach</Button></div></Col>
+                    <Col  span={10} offset={6}><div><Input placeholder='Input Github User name' mode="" defaultValue="" onChange={(e) => {this.changeUserName(e)}}></Input ></div></Col>
+                    <Col offset={16}><div><Button theme='light' type='primary' style={{ marginRight: 8 ,}} onClick = {this.login.bind(this)}>Search</Button></div></Col>
                 </Row>
             </div>
                 
