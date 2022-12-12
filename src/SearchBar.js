@@ -23,7 +23,7 @@ export default function SearchBar(props) {
         var url = window.back_url + window.get_repo;
         
         var content = {}
-        props.onSubmit(content)
+        // props.onSubmit(content)
         axios.post
         (
             url,
